@@ -31,7 +31,7 @@ class CoordinatorService: ObservableObject {
     }
     
     private init() {
-        self.push(view: MainView())
+        self.push(view: MainTabView())
     }
     
     func pop() {
@@ -46,7 +46,7 @@ class CoordinatorService: ObservableObject {
     
     func root() {
         self.stack.removeAll()
-        self.push(view: MainView())
+        self.push(view: MainTabView())
     }
     
 }

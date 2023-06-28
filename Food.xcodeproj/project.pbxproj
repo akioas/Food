@@ -15,7 +15,7 @@
 		4AA095DC2A4C602E00037DAD /* FoodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA095DB2A4C602E00037DAD /* FoodUITests.swift */; };
 		4AA095DE2A4C602E00037DAD /* FoodUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA095DD2A4C602E00037DAD /* FoodUITestsLaunchTests.swift */; };
 		4AA095EC2A4C609500037DAD /* CoordinatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA095EB2A4C609500037DAD /* CoordinatorService.swift */; };
-		4AA095EE2A4C61DE00037DAD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA095ED2A4C61DE00037DAD /* MainView.swift */; };
+		4AA095EE2A4C61DE00037DAD /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA095ED2A4C61DE00037DAD /* MainTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +47,7 @@
 		4AA095DB2A4C602E00037DAD /* FoodUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodUITests.swift; sourceTree = "<group>"; };
 		4AA095DD2A4C602E00037DAD /* FoodUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4AA095EB2A4C609500037DAD /* CoordinatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorService.swift; sourceTree = "<group>"; };
-		4AA095ED2A4C61DE00037DAD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		4AA095ED2A4C61DE00037DAD /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +144,7 @@
 		4AA095EF2A4C620200037DAD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4AA095ED2A4C61DE00037DAD /* MainView.swift */,
+				4AA095ED2A4C61DE00037DAD /* MainTabView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -280,7 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AA095C32A4C602C00037DAD /* ContentView.swift in Sources */,
-				4AA095EE2A4C61DE00037DAD /* MainView.swift in Sources */,
+				4AA095EE2A4C61DE00037DAD /* MainTabView.swift in Sources */,
 				4AA095EC2A4C609500037DAD /* CoordinatorService.swift in Sources */,
 				4AA095C12A4C602C00037DAD /* FoodApp.swift in Sources */,
 			);
