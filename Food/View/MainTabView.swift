@@ -29,7 +29,7 @@ struct MainTabView: View {
                     Image(systemName: "magnifyingglass")
                     Text("Категория")
                 }
-            Text("Корзина")
+            BasketView()
                 .tabItem {
                     Image(systemName: "trash")
                     Text("Корзина")
@@ -45,13 +45,6 @@ struct MainTabView: View {
     
 }
 
-struct MainTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainTabView()
-    }
-}
-
-
 
 extension UIImage {
     static func imageWithBounds() -> UIImage {
@@ -65,5 +58,12 @@ extension UIImage {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image!
+    }
+}
+
+
+struct MainTabView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainTabView()
     }
 }
