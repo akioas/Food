@@ -4,14 +4,14 @@ import SwiftUI
 struct MainTabView: View {
     
     init() {
-        let image = UIImage.gradientImageWithBounds()
-
+        let image = UIImage.imageWithBounds()
+        
         let appearance = UITabBarAppearance()
         appearance.configureWithDefaultBackground()
         appearance.backgroundColor = .white
         appearance.backgroundImage = UIImage()
         appearance.shadowImage = image
-
+        
         UITabBar.appearance().scrollEdgeAppearance = appearance
         UITabBar.appearance().standardAppearance = appearance
     }
@@ -19,7 +19,7 @@ struct MainTabView: View {
     var body: some View {
         
         TabView {
-            Text("")
+            MainView()
                 .tabItem {
                     Image(systemName: "house")
                     Text("Главная")
@@ -42,7 +42,7 @@ struct MainTabView: View {
         }
         
     }
-        
+    
 }
 
 struct MainTabView_Previews: PreviewProvider {
@@ -54,15 +54,14 @@ struct MainTabView_Previews: PreviewProvider {
 
 
 extension UIImage {
-    static func gradientImageWithBounds() -> UIImage {
-    let bounds = CGRect( x: 0, y: 0, width: UIScreen.main.scale, height: 1
-    )
-        let gradientLayer = CALayer()
-        gradientLayer.frame = bounds
-        gradientLayer.backgroundColor = UIColor.gray.cgColor
+    static func imageWithBounds() -> UIImage {
+        let bounds = CGRect( x: 0, y: 0, width: UIScreen.main.scale, height: 1)
+        let layer = CALayer()
+        layer.frame = bounds
+        layer.backgroundColor = UIColor.gray.cgColor
         
-        UIGraphicsBeginImageContext(gradientLayer.bounds.size)
-        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
+        UIGraphicsBeginImageContext(layer.bounds.size)
+        layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image!
