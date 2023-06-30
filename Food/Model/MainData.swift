@@ -10,6 +10,6 @@ struct Dish: Decodable {
     var price: Int
     var weight: Int
     var description: String
-    var image_url: String
+    var imageUrl: String
     var tegs: [String]
 }

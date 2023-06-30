@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MainView: View {
-    
+    @ObservedObject private var viewModel = MainViewModel()
     
     var body: some View {
         HStack {
@@ -15,8 +15,7 @@ struct MainView: View {
                     })
                     {
                         ZStack {
-                            Image(systemName: "circle")
-                                .position(x: 282, y: 126)
+                            CachedImage(url: URL(string: viewModel.dishes?.first?.imageUrl ?? ""))
                             Image(systemName: "circle")
                                 .position(x: 366, y: 41)
                             Text("Пекарни  и кондитерские ")
@@ -32,7 +31,13 @@ struct MainView: View {
             }
             Spacer()
         }
+        .onAppear {
+            if (viewModel.dishes == nil) {
+                viewModel.getData()
+            }
+        }
     }
+        
     
     
 }

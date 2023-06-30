@@ -7,5 +7,5 @@ struct CategoriesData: Decodable {
 struct Category: Decodable {
     var id: Int
     var name: String
-    var image_url: String
+    var imageUrl: String
 }
