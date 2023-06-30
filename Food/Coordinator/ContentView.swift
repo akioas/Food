@@ -2,13 +2,10 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @StateObject private var coordinator = Coordinator
+    
     
     var body: some View {
-        ZStack {
-            coordinator.container.view
-                .transition(.push(from: .bottom))
-        }
+        MainTabView()
         .preferredColorScheme(.light)
     }
 }

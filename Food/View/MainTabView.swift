@@ -2,7 +2,8 @@ import SwiftUI
 
 
 struct MainTabView: View {
-    
+    @StateObject private var mainCoordinator = MainCoordinator
+    @StateObject private var basketCoordinator = BasketCoordinator
     init() {
         let image = UIImage.imageWithBounds()
         
@@ -19,7 +20,10 @@ struct MainTabView: View {
     var body: some View {
         
         TabView {
-            MainView()
+            ZStack {
+                mainCoordinator.container.view
+                    .transition(.push(from: .bottom))
+            }
                 .tabItem {
                     Image(systemName: "house")
                     Text("Главная")
@@ -29,7 +33,10 @@ struct MainTabView: View {
                     Image(systemName: "magnifyingglass")
                     Text("Категория")
                 }
-            BasketView()
+            ZStack {
+                basketCoordinator.container.view
+                    .transition(.push(from: .bottom))
+            }
                 .tabItem {
                     Image(systemName: "trash")
                     Text("Корзина")

@@ -78,7 +78,7 @@ struct FoodGrid: View {
             LazyVGrid(columns: columns) {
                 VStack(alignment: .leading, spacing: 5) {
                     Button(action: {
-                        Coordinator.push(view: ProductView())
+                        MainCoordinator.push(view: ProductView())
                     })
                     {
                         ZStack {

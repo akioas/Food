@@ -1,6 +1,7 @@
 import SwiftUI
 
-let Coordinator = CoordinatorService.instance
+let MainCoordinator = CoordinatorService.mainInstance
+let BasketCoordinator = CoordinatorService.basketInstance
 
 struct ContainerView : View {
     var view : AnyView
@@ -16,7 +17,10 @@ struct ContainerView : View {
 
 class CoordinatorService: ObservableObject {
     
-    static let instance = CoordinatorService()
+    static let mainInstance = CoordinatorService(rootView: MainView())
+    static let basketInstance = CoordinatorService(rootView: BasketView())
+    
+    var rootView: any View
 
     @Published var container : ContainerView!
     
@@ -30,8 +34,9 @@ class CoordinatorService: ObservableObject {
         }
     }
     
-    private init() {
-        self.push(view: MainTabView())
+    init(rootView: any View) {
+        self.rootView = rootView
+        self.push(view: rootView)
     }
     
     func pop() {
@@ -46,7 +51,7 @@ class CoordinatorService: ObservableObject {
     
     func root() {
         self.stack.removeAll()
-        self.push(view: MainTabView())
+        self.push(view: rootView)
     }
     
 }

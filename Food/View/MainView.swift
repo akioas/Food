@@ -2,14 +2,16 @@ import SwiftUI
 
 struct MainView: View {
     
+    
     var body: some View {
         HStack {
+            
             Spacer()
             VStack {
                 TopView()
                 ScrollView {
                     Button(action: {
-                        Coordinator.push(view: CategoriesView())
+                        MainCoordinator.push(view: CategoriesView())
                     })
                     {
                         ZStack {
