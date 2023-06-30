@@ -1,7 +1,5 @@
 import SwiftUI
 
-let MainCoordinator = CoordinatorService.mainInstance
-let BasketCoordinator = CoordinatorService.basketInstance
 
 struct ContainerView : View {
     var view : AnyView
@@ -17,8 +15,8 @@ struct ContainerView : View {
 
 class CoordinatorService: ObservableObject {
     
-    static let mainInstance = CoordinatorService(rootView: MainView())
-    static let basketInstance = CoordinatorService(rootView: BasketView())
+    static let mainCoordinator = CoordinatorService(rootView: MainView())
+    static let basketCoordinator = CoordinatorService(rootView: BasketView())
     
     var rootView: any View
 

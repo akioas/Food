@@ -11,7 +11,7 @@ struct MainView: View {
                 TopView()
                 ScrollView {
                     Button(action: {
-                        MainCoordinator.push(view: CategoriesView())
+                        CoordinatorService.mainCoordinator.push(view: CategoriesView())
                     })
                     {
                         ZStack {

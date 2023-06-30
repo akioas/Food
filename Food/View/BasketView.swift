@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct BasketView: View {
-    @StateObject private var coordinator = BasketCoordinator
+    @StateObject private var coordinator = CoordinatorService.basketCoordinator
     var body: some View {
         VStack {
             TopView()

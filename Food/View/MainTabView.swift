@@ -2,8 +2,8 @@ import SwiftUI
 
 
 struct MainTabView: View {
-    @StateObject private var mainCoordinator = MainCoordinator
-    @StateObject private var basketCoordinator = BasketCoordinator
+    @StateObject private var mainCoordinator = CoordinatorService.mainCoordinator
+    @StateObject private var basketCoordinator = CoordinatorService.basketCoordinator
     init() {
         let image = UIImage.imageWithBounds()
         
