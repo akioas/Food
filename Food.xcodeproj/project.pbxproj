@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A026AE62A4F668E00F55F61 /* MainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A026AE52A4F668E00F55F61 /* MainData.swift */; };
+		4A026AE92A4F66F800F55F61 /* CategoriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A026AE82A4F66F800F55F61 /* CategoriesData.swift */; };
 		4AA095C12A4C602C00037DAD /* FoodApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA095C02A4C602C00037DAD /* FoodApp.swift */; };
 		4AA095C32A4C602C00037DAD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA095C22A4C602C00037DAD /* ContentView.swift */; };
 		4AA095C52A4C602D00037DAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AA095C42A4C602D00037DAD /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A026AE52A4F668E00F55F61 /* MainData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainData.swift; sourceTree = "<group>"; };
+		4A026AE82A4F66F800F55F61 /* CategoriesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesData.swift; sourceTree = "<group>"; };
 		4AA095BD2A4C602C00037DAD /* Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Food.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AA095C02A4C602C00037DAD /* FoodApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodApp.swift; sourceTree = "<group>"; };
 		4AA095C22A4C602C00037DAD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -187,7 +191,9 @@
 		4AD7ACEF2A4DBCAA008E3B55 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4A026AE52A4F668E00F55F61 /* MainData.swift */,
 				4AD7ACED2A4DBC9F008E3B55 /* CachedImageModel.swift */,
+				4A026AE82A4F66F800F55F61 /* CategoriesData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -328,9 +334,11 @@
 				4AA095EE2A4C61DE00037DAD /* MainTabView.swift in Sources */,
 				4AF70AC12A4D702B00733D37 /* CategoriesView.swift in Sources */,
 				4AA095EC2A4C609500037DAD /* CoordinatorService.swift in Sources */,
+				4A026AE62A4F668E00F55F61 /* MainData.swift in Sources */,
 				4AF70AC32A4D769A00733D37 /* ProductView.swift in Sources */,
 				4AF70ABF2A4D6D2900733D37 /* MainView.swift in Sources */,
 				4AD128732A4D7AA70060FE9E /* BasketView.swift in Sources */,
+				4A026AE92A4F66F800F55F61 /* CategoriesData.swift in Sources */,
 				4AD7ACEE2A4DBC9F008E3B55 /* CachedImageModel.swift in Sources */,
 				4AD7ACF12A4DBCFC008E3B55 /* APIManager.swift in Sources */,
 				4AD128752A4D7AED0060FE9E /* TopView.swift in Sources */,
