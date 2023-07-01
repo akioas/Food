@@ -5,6 +5,7 @@ struct BasketView: View {
     var body: some View {
         VStack {
             TopView()
+                .frame(height: 42)
             ScrollView {
                 HStack(alignment: .center, spacing: 8) {
                     ZStack {

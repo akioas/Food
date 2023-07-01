@@ -1,6 +1,6 @@
 import Foundation
 
-class BasketViewModel: ViewModel {
+class CategoriesViewModel: ViewModel {
     
     @Published var dishes: [Dish]?
     var url: String = "aba7ecaa-0a70-453b-b62d-0e326c859b3b"

@@ -2,19 +2,55 @@ import SwiftUI
 
 struct CategoriesView: View {
     var body: some View {
-        VStack {
-            HStack {
-                Text("Азиатская кухня")
+        HStack {
+            Spacer()
+                .frame(width: 16)
+            VStack {
                 Spacer()
-                ZStack {
-                    Image(systemName: "circle")
-                        .background(Color(red: 1, green: 1, blue: 1))
-                        .cornerRadius(100)
-                }
-                
+                    .frame(height: 8)
+                TopCategories()
+                    .frame(height: 42)
+                Categories()
+                FoodGrid()
             }
-            Categories()
-            FoodGrid()
+            Spacer()
+                .frame(width: 16)
+        }
+    }
+}
+
+struct TopCategories:  View {
+    var body: some View {
+        HStack {
+            VStack {
+                Spacer()
+                Button(action: {
+                    CoordinatorService.mainCoordinator.pop()
+                }) {
+                    Image("back")
+                        .frame(width: 32, height: 32, alignment: .center)
+                        .foregroundColor(.black)
+                }
+                Spacer()
+            }
+            Spacer()
+            Text("Азиатская кухня")
+            .font(
+            Font.custom("SF Pro Display", size: 18)
+            .weight(.medium)
+            )
+            .multilineTextAlignment(.center)
+            .foregroundColor(.black)
+            Spacer()
+            VStack {
+                Image("photo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 44, height: 44)
+                    .clipped()
+                    .cornerRadius(100)
+                Spacer()
+            }
         }
     }
 }

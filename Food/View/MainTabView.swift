@@ -29,7 +29,7 @@ struct MainTabView: View {
                         .frame(width: 28, height: 28)
                     Text("Главная")
                 }
-            Text("Категория")
+            Text("Поиск")
                 .tabItem {
                     Image("search")
                         .frame(width: 24, height: 24)
