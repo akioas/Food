@@ -9,7 +9,7 @@ struct MainTabView: View {
         
         let appearance = UITabBarAppearance()
         appearance.configureWithDefaultBackground()
-        appearance.backgroundColor = .white
+        appearance.backgroundColor = UIColor.white
         appearance.backgroundImage = UIImage()
         appearance.shadowImage = image
         
@@ -25,28 +25,34 @@ struct MainTabView: View {
                     .transition(.push(from: .bottom))
             }
                 .tabItem {
-                    Image(systemName: "house")
+                    Image("main")
+                        .frame(width: 28, height: 28)
                     Text("Главная")
                 }
             Text("Категория")
                 .tabItem {
-                    Image(systemName: "magnifyingglass")
-                    Text("Категория")
+                    Image("search")
+                        .frame(width: 24, height: 24)
+                    Text("Поиск")
                 }
             ZStack {
                 basketCoordinator.container.view
                     .transition(.push(from: .bottom))
             }
                 .tabItem {
-                    Image(systemName: "trash")
+                    Image("basket")
+                        .frame(width: 28, height: 28)
                     Text("Корзина")
                 }
             Text("Аккаунт")
                 .tabItem {
-                    Image(systemName: "person")
+                    Image("account")
+                        .frame(width: 28, height: 28)
                     Text("Аккаунт")
                 }
         }
+        .foregroundColor(Color(UIColor(red: 0.65, green: 0.66, blue: 0.67, alpha: 1)))
+        .accentColor(Color(UIColor(red: 51/255, green: 100/255, blue: 224/255, alpha: 1)))
         
     }
     
@@ -55,10 +61,10 @@ struct MainTabView: View {
 
 extension UIImage {
     static func imageWithBounds() -> UIImage {
-        let bounds = CGRect( x: 0, y: 0, width: UIScreen.main.scale, height: 1)
+        let bounds = CGRect( x: 0, y: 0, width: UIScreen.main.scale, height: 2)
         let layer = CALayer()
         layer.frame = bounds
-        layer.backgroundColor = UIColor.gray.cgColor
+        layer.backgroundColor = CGColor(red: 0.91, green: 0.91, blue: 0.91, alpha: 1)
         
         UIGraphicsBeginImageContext(layer.bounds.size)
         layer.render(in: UIGraphicsGetCurrentContext()!)

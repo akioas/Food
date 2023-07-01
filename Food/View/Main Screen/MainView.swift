@@ -7,7 +7,6 @@ struct MainView: View {
         
         GeometryReader { reader in
             HStack {
-                
                 Spacer()
                     .frame(width: 16)
                 VStack {
@@ -51,22 +50,15 @@ struct MainView: View {
                                                     Spacer()
                                                 }
                                                 Spacer()
-                                                
                                             }
-                                            
                                         }
                                         Spacer()
                                             .frame(height: 8)
                                     }
                                 }
                             }
-                            
-                        } else {
-                            //if let dishes
                         }
-                        
                     }
-                   // Spacer()
                 }
                 Spacer()
                     .frame(width: 16)
@@ -77,9 +69,7 @@ struct MainView: View {
                 }
             }
         }
-        
     }
-    
 }
 
 

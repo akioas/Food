@@ -6,6 +6,7 @@ struct TopView: View {
             VStack {
                 Image("location")
                     .frame(width: 24, height: 24)
+                    .foregroundColor(.black)
                 Spacer()
             }
             VStack(alignment: .leading, spacing: 4) {
