@@ -1,15 +1,11 @@
 import Foundation
 
 struct MainData: Decodable {
-    var dishes: [Dish]
+    var сategories: [Category]
 }
 
-struct Dish: Decodable {
+struct Category: Decodable {
     var id: Int
     var name: String
-    var price: Int
-    var weight: Int
-    var description: String
     var imageUrl: String
-    var tegs: [String]
 }

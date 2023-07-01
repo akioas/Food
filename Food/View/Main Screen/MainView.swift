@@ -7,37 +7,73 @@ struct MainView: View {
         HStack {
             
             Spacer()
+                .frame(width: 16)
             VStack {
+                Spacer()
+                    .frame(height: 8)
                 TopView()
+                    .frame(height: 42)
+                Spacer()
+                    .frame(height: 15)
                 ScrollView {
-                    Button(action: {
-                        CoordinatorService.mainCoordinator.push(view: CategoriesView())
-                    })
-                    {
-                        ZStack {
-                            CachedImage(url: URL(string: viewModel.dishes?.first?.imageUrl ?? ""))
-                            Image(systemName: "circle")
-                                .position(x: 366, y: 41)
-                            Text("Пекарни  и кондитерские ")
-                                .font(.custom("SF Pro Display", size: 20))
-                                .foregroundColor(Color(red: 0, green: 0, blue: 0))
-                            Image(systemName: "circle")
-                                .position(x: 192, y: 143.5)
+                    if let category = viewModel.categories {
+                        ForEach((0..<category.count), id: \.self) { index in
+                            Button(action: {
+                                CoordinatorService.mainCoordinator.push(view: CategoriesView())
+                            })
+                            {
+                                VStack {
+                                    ZStack {
+                                        
+                                        CachedImage(url: URL(string: category[index].imageUrl))
+                                            .cornerRadius(10)
+                                            .frame(height: 148)
+                                        VStack {
+                                            
+                                            Spacer()
+                                                .frame(height: 12)
+                                            HStack {
+                                                Spacer()
+                                                    .frame(width: 16)
+                                                Text(category[index].name)
+                                                    .font(
+                                                    Font.custom("SF Pro Display", size: 20)
+                                                    .weight(.medium)
+                                                    )
+                                                    .kerning(0.2)
+                                                    .foregroundColor(.black)
+                                                    .frame(maxWidth: 191, alignment: .leading)
+                                                    .multilineTextAlignment(.leading)
+
+                                                Spacer()
+                                            }
+                                            Spacer()
+                                            
+                                        }
+                                        
+                                    }
+                                    Spacer()
+                                        .frame(height: 8)
+                                }
+                            }
                         }
-                        .background(Color(red: 1, green: 0.95, blue: 0.82))
-                        .cornerRadius(10)
+                    } else {
+                        //if let dishes
                     }
+                    
                 }
+                Spacer()
             }
             Spacer()
+                .frame(width: 16)
         }
         .onAppear {
-            if (viewModel.dishes == nil) {
+            if (viewModel.categories == nil) {
                 viewModel.getData()
             }
         }
     }
-        
+    
     
     
 }

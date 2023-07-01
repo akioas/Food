@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A01E5602A504998007A7B69 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A01E55F2A504998007A7B69 /* ViewModel.swift */; };
 		4A026AE62A4F668E00F55F61 /* MainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A026AE52A4F668E00F55F61 /* MainData.swift */; };
 		4A026AE92A4F66F800F55F61 /* CategoriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A026AE82A4F66F800F55F61 /* CategoriesData.swift */; };
 		4A026AED2A4F682D00F55F61 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A026AEC2A4F682D00F55F61 /* MainViewModel.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A01E55F2A504998007A7B69 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		4A026AE52A4F668E00F55F61 /* MainData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainData.swift; sourceTree = "<group>"; };
 		4A026AE82A4F66F800F55F61 /* CategoriesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesData.swift; sourceTree = "<group>"; };
 		4A026AEC2A4F682D00F55F61 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				4AD7ACF02A4DBCFC008E3B55 /* APIManager.swift */,
 				4A026AEC2A4F682D00F55F61 /* MainViewModel.swift */,
 				4A026AEE2A4F7E1D00F55F61 /* BasketViewModel.swift */,
+				4A01E55F2A504998007A7B69 /* ViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				4A026AE62A4F668E00F55F61 /* MainData.swift in Sources */,
 				4AF70AC32A4D769A00733D37 /* ProductView.swift in Sources */,
 				4AF70ABF2A4D6D2900733D37 /* MainView.swift in Sources */,
+				4A01E5602A504998007A7B69 /* ViewModel.swift in Sources */,
 				4AD128732A4D7AA70060FE9E /* BasketView.swift in Sources */,
 				4A026AE92A4F66F800F55F61 /* CategoriesData.swift in Sources */,
 				4AD7ACEE2A4DBC9F008E3B55 /* CachedImageModel.swift in Sources */,

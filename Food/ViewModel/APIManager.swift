@@ -7,9 +7,7 @@ import Combine
 class APIManager {
     
     private let baseURL = "https://run.mocky.io/v3/"
-    
-  //"058729bd-1402-4578-88de-265481fd7d54"
-    
+        
     private var subscriber = Set<AnyCancellable>()
     private let decoder: JSONDecoder
     init() {
@@ -23,7 +21,7 @@ class APIManager {
         }
         URLSession.shared.dataTaskPublisher(for: url)
             .tryMap() { element -> Data in {
-//                print(String(data: element.data, encoding: .utf8))
+                //                print(String(data: element.data, encoding: .utf8))
                 return element.data
             }()
             }
