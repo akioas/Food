@@ -2,25 +2,32 @@ import SwiftUI
 
 struct TopView: View {
     var body: some View {
-        HStack {
+        HStack(spacing: 4) {
             VStack {
-                Spacer()
-                    .frame(height: 5)
                 Image("location")
+                    .frame(width: 24, height: 24)
                 Spacer()
             }
             VStack(alignment: .leading, spacing: 4) {
                 Text("Санкт-Петербург")
-                    .font(.custom("SF Pro Display", size: 18))
-                    .foregroundColor(Color(red: 0, green: 0, blue: 0))
+                  .font(
+                    Font.custom("SF Pro Display", size: 18)
+                      .weight(.medium)
+                  )
+                  .foregroundColor(.black)
                 Text("12 Августа, 2023")
-                    .font(.custom("SF Pro Display", size: 14))
-                    .foregroundColor(Color(red: 0, green: 0, blue: 0, opacity: 0.50))
+                .font(Font.custom("SF Pro Display", size: 14))
+                .kerning(0.14)
+                .foregroundColor(.black.opacity(0.5))
                 Spacer()
             }
             Spacer()
             VStack {
                 Image("photo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 44, height: 44)
+                    .clipped()
                     .cornerRadius(100)
                 Spacer()
             }

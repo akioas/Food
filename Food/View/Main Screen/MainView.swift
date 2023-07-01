@@ -4,77 +4,81 @@ struct MainView: View {
     @ObservedObject private var viewModel = MainViewModel()
     
     var body: some View {
-        HStack {
-            
-            Spacer()
-                .frame(width: 16)
-            VStack {
+        
+        GeometryReader { reader in
+            HStack {
+                
                 Spacer()
-                    .frame(height: 8)
-                TopView()
-                    .frame(height: 42)
-                Spacer()
-                    .frame(height: 15)
-                ScrollView {
-                    if let category = viewModel.categories {
-                        ForEach((0..<category.count), id: \.self) { index in
-                            Button(action: {
-                                CoordinatorService.mainCoordinator.push(view: CategoriesView())
-                            })
-                            {
-                                VStack {
-                                    ZStack {
-                                        
-                                        CachedImage(url: URL(string: category[index].imageUrl))
-                                            .cornerRadius(10)
-                                            .frame(height: 148)
-                                        VStack {
+                    .frame(width: 16)
+                VStack {
+                    Spacer()
+                        .frame(height: 8)
+                    TopView()
+                        .frame(height: 42)
+                    Spacer()
+                        .frame(height: 15)
+                    ScrollView {
+                        if let category = viewModel.categories {
+                            
+                            ForEach((0..<category.count), id: \.self) { index in
+                                Button(action: {
+                                    CoordinatorService.mainCoordinator.push(view: CategoriesView())
+                                })
+                                {
+                                    VStack {
+                                        ZStack {
                                             
-                                            Spacer()
-                                                .frame(height: 12)
-                                            HStack {
+                                            CachedImage(url: URL(string: category[index].imageUrl))
+                                                .cornerRadius(10)
+                                                .frame(height: ((reader.size.height - 57) / CGFloat(category.count) - 8))
+                                            VStack {
+                                                
                                                 Spacer()
-                                                    .frame(width: 16)
-                                                Text(category[index].name)
-                                                    .font(
-                                                    Font.custom("SF Pro Display", size: 20)
-                                                    .weight(.medium)
-                                                    )
-                                                    .kerning(0.2)
-                                                    .foregroundColor(.black)
-                                                    .frame(maxWidth: 191, alignment: .leading)
-                                                    .multilineTextAlignment(.leading)
-
+                                                    .frame(height: 12)
+                                                HStack {
+                                                    Spacer()
+                                                        .frame(width: 16)
+                                                    Text(category[index].name)
+                                                        .font(
+                                                            Font.custom("SF Pro Display", size: 20)
+                                                                .weight(.medium)
+                                                        )
+                                                        .kerning(0.2)
+                                                        .foregroundColor(.black)
+                                                        .frame(maxWidth: 191, alignment: .leading)
+                                                        .multilineTextAlignment(.leading)
+                                                    
+                                                    Spacer()
+                                                }
                                                 Spacer()
+                                                
                                             }
-                                            Spacer()
                                             
                                         }
-                                        
+                                        Spacer()
+                                            .frame(height: 8)
                                     }
-                                    Spacer()
-                                        .frame(height: 8)
                                 }
                             }
+                            
+                        } else {
+                            //if let dishes
                         }
-                    } else {
-                        //if let dishes
+                        
                     }
-                    
+                   // Spacer()
                 }
                 Spacer()
+                    .frame(width: 16)
             }
-            Spacer()
-                .frame(width: 16)
-        }
-        .onAppear {
-            if (viewModel.categories == nil) {
-                viewModel.getData()
+            .onAppear {
+                if (viewModel.categories == nil) {
+                    viewModel.getData()
+                }
             }
         }
+        
     }
-    
-    
     
 }
 
