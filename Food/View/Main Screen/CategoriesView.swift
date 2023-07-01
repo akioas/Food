@@ -1,23 +1,76 @@
 import SwiftUI
 
 struct CategoriesView: View {
+    
+    @ObservedObject private var viewModel = CategoriesViewModel()
+    
+    let columns = [GridItem(.flexible(), spacing: 8),
+                   GridItem(.flexible(), spacing: 8),
+                   GridItem(.flexible(), spacing: 0)]
+    @State var filtered = "Все меню"
+    
     var body: some View {
-        HStack {
-            Spacer()
-                .frame(width: 16)
-            VStack {
+        GeometryReader { reader in
+            HStack {
                 Spacer()
-                    .frame(height: 8)
-                TopCategories()
-                    .frame(height: 42)
-                Categories()
-                FoodGrid()
+                    .frame(width: 16)
+                VStack {
+                    Spacer()
+                        .frame(height: 8)
+                    TopCategories()
+                        .frame(height: 42)
+                    Categories()
+                    
+                    ScrollView(.vertical) {
+                        LazyVGrid(columns: columns) {
+                            if let dishes = viewModel.dishes {
+                                ForEach(0..<dishes.count, id: \.self) { index in
+                                    Button(action: {
+                                        CoordinatorService.mainCoordinator.push(view: ProductView())
+                                    })
+                                    {
+                                        VStack(alignment: .leading, spacing: 5) {
+                                            ZStack {
+                                                Color(red: 0.97, green: 0.97, blue: 0.96)
+                                                    .frame(width: (reader.size.width - 48) / 3, height: (reader.size.width - 48) / 3)
+                                                    .cornerRadius(10)
+                                                
+                                                CachedImage(url: URL(string: dishes[index].imageUrl))
+                                                    .cornerRadius(10)
+                                                    .frame(width: (reader.size.width - 48) / 3 - 10, height: (reader.size.width - 48) / 3 - 10)
+                                            }
+                                            
+                                            
+                                            Text(dishes[index].name)
+                                                .font(Font.custom("SF Pro Display", size: 14))
+                                                .kerning(0.14)
+                                                .foregroundColor(.black)
+                                                .frame(maxWidth: (reader.size.width - 48) / 3, alignment: .leading)
+                                                .multilineTextAlignment(.leading)
+                                                .lineLimit(2)
+                                            Spacer()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+                Spacer()
+                    .frame(width: 16)
             }
-            Spacer()
-                .frame(width: 16)
+            .onAppear {
+                if (viewModel.dishes == nil) {
+                    viewModel.getData()
+                }
+            }
         }
     }
 }
+
+
+
 
 struct TopCategories:  View {
     var body: some View {
@@ -54,6 +107,10 @@ struct TopCategories:  View {
         }
     }
 }
+
+
+
+
 
 struct Categories:  View {
     var body: some View {
@@ -107,32 +164,6 @@ struct Categories:  View {
     }
 }
 
-struct FoodGrid: View {
-    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
-    var body: some View {
-        ScrollView(.vertical) {
-            LazyVGrid(columns: columns) {
-                VStack(alignment: .leading, spacing: 5) {
-                    Button(action: {
-                        CoordinatorService.mainCoordinator.push(view: ProductView())
-                    })
-                    {
-                        ZStack {
-                            Image(systemName: "circle")
-                                .position(x: 59.5, y: 62)
-                        }
-                        .background(Color(red: 0.97, green: 0.97, blue: 0.96))
-                        .cornerRadius(10)
-                        Text("Рис с овощами")
-                            .font(.custom("SF Pro Display", size: 14))
-                            .foregroundColor(Color(red: 0, green: 0, blue: 0))
-                    }
-                }
-            }
-        }
-        
-    }
-}
 
 struct CategoriesView_Previews: PreviewProvider {
     static var previews: some View {

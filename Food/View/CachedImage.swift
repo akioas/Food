@@ -13,6 +13,7 @@ struct CachedImage: View {
         if let image = image.image {
             Image(uiImage: image)
                 .resizable()
+                .aspectRatio(contentMode: .fit)
         } else {
             ProgressView()
         }

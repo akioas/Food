@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct MainView: View {
+    
     @ObservedObject private var viewModel = MainViewModel()
     
     var body: some View {
@@ -29,7 +30,7 @@ struct MainView: View {
                                             
                                             CachedImage(url: URL(string: category[index].imageUrl))
                                                 .cornerRadius(10)
-                                                .frame(height: ((reader.size.height - 57) / CGFloat(category.count) - 8))
+                                                .frame(height: ((reader.size.height - 57) / CGFloat((category.count) <= 4 ? category.count : 4) - 8))
                                             VStack {
                                                 
                                                 Spacer()
