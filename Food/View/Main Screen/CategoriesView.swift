@@ -3,11 +3,11 @@ import SwiftUI
 struct CategoriesView: View {
     
     @ObservedObject private var viewModel = CategoriesViewModel()
+    @State var selected = CategoriesViewModel.defaultCategory
     
     let columns = [GridItem(.flexible(), spacing: 8),
                    GridItem(.flexible(), spacing: 8),
                    GridItem(.flexible(), spacing: 0)]
-    @State var filtered = "Все меню"
     
     var body: some View {
         GeometryReader { reader in
@@ -19,43 +19,49 @@ struct CategoriesView: View {
                         .frame(height: 8)
                     TopCategories()
                         .frame(height: 42)
-                    Categories()
+                    Spacer()
+                        .frame(height: 14)
+                    Categories(selected: $selected, categories: $viewModel.categories)
+                        .frame(height: 35)
+                    Spacer()
+                        .frame(height: 16)
                     
                     ScrollView(.vertical) {
                         LazyVGrid(columns: columns) {
                             if let dishes = viewModel.dishes {
                                 ForEach(0..<dishes.count, id: \.self) { index in
-                                    Button(action: {
-                                        CoordinatorService.mainCoordinator.push(view: ProductView())
-                                    })
-                                    {
-                                        VStack(alignment: .leading, spacing: 5) {
-                                            ZStack {
-                                                Color(red: 0.97, green: 0.97, blue: 0.96)
-                                                    .frame(width: (reader.size.width - 48) / 3, height: (reader.size.width - 48) / 3)
-                                                    .cornerRadius(10)
+                                    if (dishes[index].tegs.contains(selected)) {
+                                        Button(action: {
+                                            CoordinatorService.mainCoordinator.push(view: ProductView())
+                                        })
+                                        {
+                                            VStack(alignment: .leading, spacing: 5) {
+                                                ZStack {
+                                                    Color(red: 0.97, green: 0.97, blue: 0.96)
+                                                        .frame(width: (reader.size.width - 48) / 3, height: (reader.size.width - 48) / 3)
+                                                        .cornerRadius(10)
+                                                    
+                                                    CachedImage(url: URL(string: dishes[index].imageUrl))
+                                                        .cornerRadius(10)
+                                                        .frame(width: (reader.size.width - 48) / 3 - 10, height: (reader.size.width - 48) / 3 - 10)
+                                                }
                                                 
-                                                CachedImage(url: URL(string: dishes[index].imageUrl))
-                                                    .cornerRadius(10)
-                                                    .frame(width: (reader.size.width - 48) / 3 - 10, height: (reader.size.width - 48) / 3 - 10)
+                                                
+                                                Text(dishes[index].name)
+                                                    .font(Font.custom("SF Pro Display", size: 14))
+                                                    .kerning(0.14)
+                                                    .foregroundColor(.black)
+                                                    .frame(maxWidth: (reader.size.width - 48) / 3, alignment: .leading)
+                                                    .multilineTextAlignment(.leading)
+                                                    .lineLimit(2)
+                                                Spacer()
                                             }
-                                            
-                                            
-                                            Text(dishes[index].name)
-                                                .font(Font.custom("SF Pro Display", size: 14))
-                                                .kerning(0.14)
-                                                .foregroundColor(.black)
-                                                .frame(maxWidth: (reader.size.width - 48) / 3, alignment: .leading)
-                                                .multilineTextAlignment(.leading)
-                                                .lineLimit(2)
-                                            Spacer()
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                    
                 }
                 Spacer()
                     .frame(width: 16)
@@ -88,12 +94,12 @@ struct TopCategories:  View {
             }
             Spacer()
             Text("Азиатская кухня")
-            .font(
-            Font.custom("SF Pro Display", size: 18)
-            .weight(.medium)
-            )
-            .multilineTextAlignment(.center)
-            .foregroundColor(.black)
+                .font(
+                    Font.custom("SF Pro Display", size: 18)
+                        .weight(.medium)
+                )
+                .multilineTextAlignment(.center)
+                .foregroundColor(.black)
             Spacer()
             VStack {
                 Image("photo")
@@ -113,56 +119,59 @@ struct TopCategories:  View {
 
 
 struct Categories:  View {
+    let color = Color(red: 0.97, green: 0.97, blue: 0.96)
+    let selectedColor = Color(red: 0.2, green: 0.39, blue: 0.88)
+    @Binding var selected: String
+    @Binding var categories: [String]?
     var body: some View {
-        HStack(alignment: .top, spacing: 8) {
-            HStack(alignment: .top, spacing: 10) {
-                Text("Все меню")
-                    .font(.custom("SF Pro Display", size: 14))
-                    .foregroundColor(Color(red: 1, green: 1, blue: 1))
+        ScrollView(.horizontal) {
+            if let categories = categories {
+                LazyHStack(spacing: 8) {
+                    ForEach(0..<categories.count, id: \.self) { index in
+                        Button (action: {selected = categories[index]})
+                        {
+                            ZStack {
+                                if (categories[index] == selected) {
+                                    selectedColor
+                                        .cornerRadius(10)
+                                } else {
+                                    color
+                                        .cornerRadius(10)
+                                }
+                                
+                                VStack {
+                                    Spacer()
+                                        .frame(height: 10)
+                                    HStack {
+                                        Spacer()
+                                            .frame(width: 16)
+                                        if (categories[index] == selected) {
+                                            Text(categories[index])
+                                                .font(Font.custom("SF Pro Display", size: 14))
+                                                .kerning(0.14)
+                                                .foregroundColor(.white)
+                                        } else {
+                                            Text(categories[index])
+                                                .font(Font.custom("SF Pro Display", size: 14))
+                                                .kerning(0.14)
+                                                .foregroundColor(.black)
+                                        }
+                                        Spacer()
+                                            .frame(width: 16)
+                                    }
+                                    Spacer()
+                                        .frame(height: 10)
+                                }
+                            }
+                            .frame(height: 35)
+                        }
+                    }
+                }
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 10)
-            .background(Color(red: 0.20, green: 0.39, blue: 0.88))
-            .cornerRadius(10)
-            HStack(alignment: .top, spacing: 10) {
-                Text("Салаты")
-                    .font(.custom("SF Pro Display", size: 14))
-                    .foregroundColor(Color(red: 0, green: 0, blue: 0))
-            }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 10)
-            .background(Color(red: 0.97, green: 0.97, blue: 0.96))
-            .cornerRadius(10)
-            HStack(alignment: .top, spacing: 10) {
-                Text("С рисом")
-                    .font(.custom("SF Pro Display", size: 14))
-                    .foregroundColor(Color(red: 0, green: 0, blue: 0))
-            }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 10)
-            .background(Color(red: 0.97, green: 0.97, blue: 0.96))
-            .cornerRadius(10)
-            HStack(alignment: .top, spacing: 10) {
-                Text("С рыбой")
-                    .font(.custom("SF Pro Display", size: 14))
-                    .foregroundColor(Color(red: 0, green: 0, blue: 0))
-            }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 10)
-            .background(Color(red: 0.97, green: 0.97, blue: 0.96))
-            .cornerRadius(10)
-            HStack(alignment: .top, spacing: 10) {
-                Text("Роллы")
-                    .font(.custom("SF Pro Display", size: 14))
-                    .foregroundColor(Color(red: 0, green: 0, blue: 0))
-            }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 10)
-            .background(Color(red: 0.97, green: 0.97, blue: 0.96))
-            .cornerRadius(10)
         }
     }
 }
+
 
 
 struct CategoriesView_Previews: PreviewProvider {
