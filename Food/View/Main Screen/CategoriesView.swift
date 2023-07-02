@@ -17,54 +17,67 @@ struct CategoriesView: View {
                 VStack {
                     Spacer()
                         .frame(height: 8)
-                    TopCategories()
-                        .frame(height: 42)
+                    HStack {
+                        TopCategories()
+                            .frame(height: 42)
+                        Spacer()
+                            .frame(width: 16)
+                    }
                     Spacer()
                         .frame(height: 14)
                     Categories(selected: $selected, categories: $viewModel.categories)
                         .frame(height: 35)
                     Spacer()
                         .frame(height: 16)
-                    
-                    ScrollView(.vertical) {
-                        LazyVGrid(columns: columns) {
-                            if let dishes = viewModel.dishes {
-                                ForEach(0..<dishes.count, id: \.self) { index in
-                                    if (dishes[index].tegs.contains(selected)) {
-                                        Button(action: {
-                                            CoordinatorService.mainCoordinator.push(view: ProductView())
-                                        })
-                                        {
-                                            VStack(alignment: .leading, spacing: 5) {
-                                                ZStack {
-                                                    Color(red: 0.97, green: 0.97, blue: 0.96)
-                                                        .frame(width: (reader.size.width - 48) / 3, height: (reader.size.width - 48) / 3)
-                                                        .cornerRadius(10)
-                                                    
-                                                    CachedImage(url: URL(string: dishes[index].imageUrl))
-                                                        .cornerRadius(10)
-                                                        .frame(width: (reader.size.width - 48) / 3 - 10, height: (reader.size.width - 48) / 3 - 10)
+                    HStack {
+                        ScrollView(.vertical) {
+                            LazyVGrid(columns: columns) {
+                                if let dishes = viewModel.dishes {
+                                    ForEach(0..<dishes.count, id: \.self) { index in
+                                        if (dishes[index].tegs.contains(selected)) {
+                                            Button(action: {
+                                                CoordinatorService.mainCoordinator.push(view: ProductView())
+                                            })
+                                            {
+                                                VStack(alignment: .leading, spacing: 5) {
+                                                    ZStack {
+                                                        Color(red: 0.97, green: 0.97, blue: 0.96)
+                                                            .frame(width: (reader.size.width - 48) / 3, height: (reader.size.width - 48) / 3)
+                                                            .cornerRadius(10)
+
+                                                        CachedImage(url: URL(string: dishes[index].imageUrl))
+                                                            .cornerRadius(10)
+                                                            .frame(width: (reader.size.width - 48) / 3 - 10, height: (reader.size.width - 48) / 3 - 10)
+                                                    }
+
+
+                                                    Text(dishes[index].name)
+                                                        .font(Font.custom("SF Pro Display", size: 14))
+                                                        .kerning(0.14)
+                                                        .foregroundColor(.black)
+                                                        .frame(maxWidth: (reader.size.width - 48) / 3, alignment: .leading)
+                                                        .multilineTextAlignment(.leading)
+                                                        .lineLimit(2)
+                                                    Spacer()
                                                 }
-                                                
-                                                
-                                                Text(dishes[index].name)
-                                                    .font(Font.custom("SF Pro Display", size: 14))
-                                                    .kerning(0.14)
-                                                    .foregroundColor(.black)
-                                                    .frame(maxWidth: (reader.size.width - 48) / 3, alignment: .leading)
-                                                    .multilineTextAlignment(.leading)
-                                                    .lineLimit(2)
-                                                Spacer()
                                             }
                                         }
                                     }
+
                                 }
-                            }
-                        }
+
+
+                            }//LazyVGrid
+
+                        }//ScrollView
+                        .frame(width: reader.size.width - 32)
+                        Spacer()
+                            .frame(width: 16)
                     }
+
+                    
                 }
-                Spacer()
-                    .frame(width: 16)
+                
             }
             .onAppear {
                 if (viewModel.dishes == nil) {
