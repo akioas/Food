@@ -68,11 +68,11 @@ struct Product: View {
                         Spacer()
                             .frame(height: 8)
                         HStack {
-                            Text(String(dish.price))
+                            Text(String(dish.price) + " ₽")
                                 .font(Font.custom("SF Pro Display", size: 14))
                                 .kerning(0.14)
                                 .foregroundColor(.black)
-                            Text(String(dish.price))
+                            Text("·" + String(dish.weight) + " г")
                                 .font(Font.custom("SF Pro Display", size: 14))
                                 .kerning(0.14)
                                 .foregroundColor(.black).opacity(0.5)
@@ -81,21 +81,40 @@ struct Product: View {
                         Spacer()
                             .frame(height: 8)
                         HStack {
-                            Text(dish.description)
-                                .font(Font.custom("SF Pro Display", size: 14))
-                                .kerning(0.14)
-                                .foregroundColor(.black.opacity(0.65))
-                                .frame(alignment: .leading)
-                                .lineLimit(10)
-                            
+                            ScrollView {
+                                Text(dish.description)
+                                    .font(Font.custom("SF Pro Display", size: 14))
+                                    .kerning(0.14)
+                                    .foregroundColor(.black.opacity(0.65))
+                                    .frame(alignment: .leading)
+                                    .lineLimit(10)
+                            }
                             Spacer()
                                 .frame(width: 16)
                         }
+                      //  Spacer()
+                        ZStack {
+                            HStack {
+                                Color(red: 0.2, green: 0.39, blue: 0.88)
+                                    .cornerRadius(10)
+                                Spacer()
+                                    .frame(width: 16)
+                            }
+                            Text("Добавить в корзину")
+                            .font(
+                            Font.custom("SF Pro Display", size: 16)
+                            .weight(.medium)
+                            )
+                            .kerning(0.1)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.white)
+                        }
+                        .frame(height: 48)
                         Spacer()
                             .frame(height: 16)
                         
-                        Spacer()
-                            .frame(width: 16)
+                      //  Spacer()
+                    //        .frame(width: 16)
                         
                         
                     }
