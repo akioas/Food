@@ -36,8 +36,8 @@ struct CategoriesView: View {
                                     ForEach(0..<dishes.count, id: \.self) { index in
                                         if (dishes[index].tegs.contains(selected)) {
                                             Button(action: {
-                                                settings.isShowing = true
                                                 CoordinatorService.mainCoordinator.push(view: ProductView())
+                                                settings.isShowing = true
                                             })
                                             {
                                                 VStack(alignment: .leading, spacing: 5) {
