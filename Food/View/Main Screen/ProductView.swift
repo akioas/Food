@@ -27,6 +27,7 @@ struct ProductView: View {
 
 struct Product: View {
     @EnvironmentObject var settings: Settings
+    var viewModel = CartViewModel()
     var body: some View {
         ZStack {
             Color(.white)
@@ -93,23 +94,30 @@ struct Product: View {
                                 .frame(width: 16)
                         }
                       //  Spacer()
-                        ZStack {
-                            HStack {
-                                Color(red: 0.2, green: 0.39, blue: 0.88)
-                                    .cornerRadius(10)
-                                Spacer()
-                                    .frame(width: 16)
+                        HStack {
+                            Button(action: {
+                                print(viewModel.getCart())
+                                viewModel.addToCart(id: dish.id)
+                            }) {
+                                ZStack {
+                                    HStack {
+                                        Color(red: 0.2, green: 0.39, blue: 0.88)
+                                            .cornerRadius(10)
+                                        Spacer()
+                                            .frame(width: 16)
+                                    }
+                                    Text("Добавить в корзину")
+                                        .font(
+                                            Font.custom("SF Pro Display", size: 16)
+                                                .weight(.medium)
+                                        )
+                                        .kerning(0.1)
+                                        .multilineTextAlignment(.center)
+                                        .foregroundColor(.white)
+                                }
+                                .frame(height: 48)
                             }
-                            Text("Добавить в корзину")
-                            .font(
-                            Font.custom("SF Pro Display", size: 16)
-                            .weight(.medium)
-                            )
-                            .kerning(0.1)
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.white)
                         }
-                        .frame(height: 48)
                         Spacer()
                             .frame(height: 16)
                         

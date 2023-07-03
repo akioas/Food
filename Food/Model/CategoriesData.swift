@@ -4,7 +4,7 @@ struct CategoriesData: Decodable {
     var dishes: [Dish]
 }
 
-struct Dish: Decodable {
+struct Dish: Decodable, Encodable {
     var id: Int
     var name: String
     var price: Int
