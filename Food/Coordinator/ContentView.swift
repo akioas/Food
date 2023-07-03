@@ -2,16 +2,12 @@ import SwiftUI
 
 
 struct ContentView: View {
-    
-    
+    @StateObject var settings = Settings()
     var body: some View {
-        MainTabView()
-        .preferredColorScheme(.light)
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        ZStack {
+            MainTabView()
+                .preferredColorScheme(.light)
+        }
+        .environmentObject(settings)
     }
 }

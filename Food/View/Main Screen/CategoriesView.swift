@@ -4,7 +4,7 @@ struct CategoriesView: View {
     
     @ObservedObject private var viewModel = CategoriesViewModel()
     @State var selected = CategoriesViewModel.defaultCategory
-    
+    @EnvironmentObject var settings: Settings
     let columns = [GridItem(.flexible(), spacing: 8),
                    GridItem(.flexible(), spacing: 8),
                    GridItem(.flexible(), spacing: 0)]
@@ -36,6 +36,7 @@ struct CategoriesView: View {
                                     ForEach(0..<dishes.count, id: \.self) { index in
                                         if (dishes[index].tegs.contains(selected)) {
                                             Button(action: {
+                                                settings.isShowing = true
                                                 CoordinatorService.mainCoordinator.push(view: ProductView())
                                             })
                                             {

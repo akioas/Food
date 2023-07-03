@@ -2,6 +2,33 @@ import SwiftUI
 
 
 struct MainTabView: View {
+    
+    @EnvironmentObject var settings: Settings
+    var body: some View {
+        
+        
+        if settings.isShowing {
+            Tab()
+            .foregroundColor(Color(UIColor(red: 0.65, green: 0.66, blue: 0.67, alpha: 1)))
+            .accentColor(Color(UIColor(red: 51/255, green: 100/255, blue: 224/255, alpha: 1)))
+            .overlay(
+                VStack {
+                        Spacer()
+                        Color(.black).opacity(0.3).edgesIgnoringSafeArea(.all)
+                            .frame(height: 51)
+                    }
+            )
+        } else {
+            Tab()
+            .foregroundColor(Color(UIColor(red: 0.65, green: 0.66, blue: 0.67, alpha: 1)))
+            .accentColor(Color(UIColor(red: 51/255, green: 100/255, blue: 224/255, alpha: 1)))
+        }
+        
+    }
+    
+}
+
+struct Tab: View {
     @StateObject private var mainCoordinator = CoordinatorService.mainCoordinator
     @StateObject private var basketCoordinator = CoordinatorService.basketCoordinator
     init() {
@@ -16,9 +43,7 @@ struct MainTabView: View {
         UITabBar.appearance().scrollEdgeAppearance = appearance
         UITabBar.appearance().standardAppearance = appearance
     }
-    
     var body: some View {
-        
         TabView {
             ZStack {
                 mainCoordinator.container.view
@@ -51,11 +76,7 @@ struct MainTabView: View {
                     Text("Аккаунт")
                 }
         }
-        .foregroundColor(Color(UIColor(red: 0.65, green: 0.66, blue: 0.67, alpha: 1)))
-        .accentColor(Color(UIColor(red: 51/255, green: 100/255, blue: 224/255, alpha: 1)))
-        
     }
-    
 }
 
 
