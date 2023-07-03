@@ -25,9 +25,9 @@ class CoordinatorService: ObservableObject {
     private var stack  = [ContainerView]() {
         didSet {
             if let view = stack.last {
-                withAnimation {
+                //withAnimation {
                     self.container = view
-                }
+               // }
             }
         }
     }

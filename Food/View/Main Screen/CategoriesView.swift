@@ -1,7 +1,22 @@
 import SwiftUI
 
 struct CategoriesView: View {
-    
+    @EnvironmentObject var settings: Settings
+    var body: some View {
+        ZStack {
+            CategoriesMainView()
+
+                if settings.isShowing {
+                    Color(.black).opacity(0.3).edgesIgnoringSafeArea(.all)
+                        ProductView()
+                            .frame(height: 446)
+                    
+                }
+        }
+    }
+}
+
+struct CategoriesMainView: View {
     @ObservedObject private var viewModel = CategoriesViewModel()
     @State var selected = CategoriesViewModel.defaultCategory
     @EnvironmentObject var settings: Settings
@@ -36,9 +51,13 @@ struct CategoriesView: View {
                                     ForEach(0..<dishes.count, id: \.self) { index in
                                         if (dishes[index].tegs.contains(selected)) {
                                             Button(action: {
-                                                CoordinatorService.mainCoordinator.push(view: ProductView(dish: dishes[index]))
-                                                settings.isShowing = true
-                                            })
+                                                    print("11")
+                                                    
+                                                settings.dish = dishes[index]
+                                                    settings.isShowing = true
+                                                
+                                            }
+                                            )
                                             {
                                                 VStack(alignment: .leading, spacing: 5) {
                                                     ZStack {
@@ -88,7 +107,6 @@ struct CategoriesView: View {
         }
     }
 }
-
 
 
 
@@ -187,9 +205,3 @@ struct Categories:  View {
 }
 
 
-
-struct CategoriesView_Previews: PreviewProvider {
-    static var previews: some View {
-        CategoriesView()
-    }
-}
