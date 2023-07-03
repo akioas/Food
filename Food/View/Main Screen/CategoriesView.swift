@@ -36,7 +36,7 @@ struct CategoriesView: View {
                                     ForEach(0..<dishes.count, id: \.self) { index in
                                         if (dishes[index].tegs.contains(selected)) {
                                             Button(action: {
-                                                CoordinatorService.mainCoordinator.push(view: ProductView())
+                                                CoordinatorService.mainCoordinator.push(view: ProductView(dish: dishes[index]))
                                                 settings.isShowing = true
                                             })
                                             {
