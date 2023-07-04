@@ -120,7 +120,7 @@ struct Cart: View {
                     Spacer()
 
                 }//ScrollView
-                .frame(width: reader.size.width - 32)
+                .frame(width: reader.size.width - 16)
                 
             }
             VStack {
