@@ -1,4 +1,5 @@
 import Foundation
+//второй главный экран
 
 class CategoriesViewModel: ViewModel {
     

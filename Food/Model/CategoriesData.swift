@@ -1,5 +1,5 @@
 import Foundation
-
+//второй главный экран, данные
 struct CategoriesData: Decodable {
     var dishes: [Dish]
 }

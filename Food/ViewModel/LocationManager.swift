@@ -1,6 +1,6 @@
 import SwiftUI
 import CoreLocation
-
+//получение города
 class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     private let manager = CLLocationManager()
     @Published var lastKnownLocation: CLLocation?

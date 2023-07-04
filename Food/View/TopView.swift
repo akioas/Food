@@ -1,8 +1,16 @@
 import SwiftUI
 import CoreLocation
+//верхняя часть экрана с локацией и датой
 
 struct TopView: View {
     @StateObject var locationManager = LocationManager()
+    //дата
+    var today: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        dateFormatter.dateFormat = "dd MMMM, YYYY"
+        return dateFormatter.string(from: Date())
+    }
     var body: some View {
         HStack(spacing: 4) {
             VStack {
@@ -19,7 +27,7 @@ struct TopView: View {
                             .weight(.medium)
                     )
                     .foregroundColor(.black)
-                Text(Date(), style: .date)
+                Text(today)
                     .font(Font.custom("SF Pro Display", size: 14))
                     .kerning(0.14)
                     .foregroundColor(.black.opacity(0.5))
@@ -44,9 +52,3 @@ struct TopView: View {
     }
 }
 
-
-struct TopView_Previews: PreviewProvider {
-    static var previews: some View {
-        TopView()
-    }
-}

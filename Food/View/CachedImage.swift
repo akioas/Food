@@ -1,4 +1,5 @@
 import SwiftUI
+//для сохранения картинок в кэше, View
 
 struct CachedImage: View {
     

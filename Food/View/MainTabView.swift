@@ -1,11 +1,10 @@
 import SwiftUI
 
-
+//Tab View внизу экрана
 struct MainTabView: View {
     
     @EnvironmentObject var settings: Settings
     var body: some View {
-        
         
         if settings.isShowing {
             Tab()

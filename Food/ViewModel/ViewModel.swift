@@ -1,4 +1,5 @@
 import SwiftUI
+//для экранов с загрузкой данных
 
 protocol ViewModel: ObservableObject {
     func getData()

@@ -1,5 +1,5 @@
 import Foundation
-
+//для сохранения корзины
 class DishesData {
     private let cartKey = "cart"
     private let dishesKey = "dishes"

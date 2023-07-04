@@ -1,5 +1,5 @@
 import UIKit
-
+//для сохранения картинок в кэше
 class ImageCache {
     var cache = NSCache<NSURL, UIImage>()
     private static var imageCache = ImageCache()

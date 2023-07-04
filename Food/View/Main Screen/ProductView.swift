@@ -1,4 +1,5 @@
 import SwiftUI
+//третий главный экран
 
 struct ProductView: View {
 
@@ -13,7 +14,6 @@ struct ProductView: View {
                         .frame(width: 16)
                     Product()
                        
-                    
                     Spacer()
                         .frame(width: 16)
                 }

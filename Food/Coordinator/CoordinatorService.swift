@@ -1,5 +1,5 @@
 import SwiftUI
-
+//координатор
 
 struct ContainerView : View {
     var view : AnyView

@@ -1,5 +1,5 @@
 import SwiftUI
-
+//корзина
 struct BasketView: View {
     var body: some View {
         HStack {
@@ -27,12 +27,11 @@ struct BasketView: View {
 
 struct Cart: View {
     @State var cart = CartViewModel().getCart()
-    @State var dishes = CartViewModel().getDishes()
     @State var viewCart = [Int : Int]()
     @State var sum = CartViewModel().calc()
-
+    
     let model = CartViewModel()
-
+    
     var keys: [Int]?
     var values: [Int]?
     
@@ -53,14 +52,14 @@ struct Cart: View {
                         }
                     }
                     Spacer()
-
+                    
                 }//ScrollView
                 .frame(width: reader.size.width - 16)
                 
             }
             VStack {
                 Spacer()
-
+                
                 HStack {
                     ZStack {
                         Color(red: 0.2, green: 0.39, blue: 0.88)
@@ -86,7 +85,7 @@ struct Cart: View {
                         .frame(width: 16)
                 }
                 .frame(height: 48)
-
+                
                 Spacer()
                     .frame(height: 16)
             }
@@ -104,7 +103,7 @@ struct DishView: View {
     @Binding var viewCart: [Int : Int]
     @Binding var sum: Int
     var key: Int?
-
+    
     let model = CartViewModel()
     var body: some View {
         if let key = key {
@@ -153,12 +152,12 @@ struct DishView: View {
                     Spacer()
                         .frame(height: 6)
                     
-                            
-                            Text(String(viewCart[key] ?? 0))
-                                .kerning(0.14)
-                                .foregroundColor(.black)
-                                .frame(width: 22)
-                        
+                    
+                    Text(String(viewCart[key] ?? 0))
+                        .kerning(0.14)
+                        .foregroundColor(.black)
+                        .frame(width: 22)
+                    
                     
                     Spacer()
                     Button(action: {model.addToCart(id: key)

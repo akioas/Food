@@ -1,5 +1,5 @@
 import Foundation
-
+//первый главный экран, данные
 struct MainData: Decodable {
     var сategories: [Category]
 }

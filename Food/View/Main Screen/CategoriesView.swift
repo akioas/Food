@@ -1,4 +1,5 @@
 import SwiftUI
+//второй главный экран
 
 struct CategoriesView: View {
     @ObservedObject private var viewModel = CategoriesViewModel()

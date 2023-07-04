@@ -1,4 +1,5 @@
 import SwiftUI
+//первый главный экран
 
 struct MainView: View {
     

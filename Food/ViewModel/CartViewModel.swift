@@ -1,4 +1,5 @@
 import SwiftUI
+//для сохранения корзины
 
 class CartViewModel {
     let model = DishesData()

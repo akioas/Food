@@ -1,5 +1,5 @@
 import Foundation
-
+//первый главный экран
 class MainViewModel: ViewModel {
     
     @Published var categories: [Category]?

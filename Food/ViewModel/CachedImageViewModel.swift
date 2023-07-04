@@ -3,6 +3,7 @@ import SwiftUI
 import Combine
 import UIKit
 
+//для сохранения картинок в кэше, ViewModel
 
 class UrlImageModel: ObservableObject {
     

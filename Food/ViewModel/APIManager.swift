@@ -2,7 +2,7 @@
 
 import Foundation
 import Combine
-
+//загрузка данных
 
 class APIManager {
     
