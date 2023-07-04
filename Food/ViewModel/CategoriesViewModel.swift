@@ -15,7 +15,7 @@ class CategoriesViewModel: ViewModel {
                 self.dishes = result.dishes.sorted(by: {$0.id < $1.id})
                 self.getCategories()
                 if let dishes = self.dishes {
-                    DishesData().saveDishes(dishes: dishes)
+                    CartViewModel().saveDishes(dishes: dishes)
                 }
             case .failure(let error):
                 print(error)

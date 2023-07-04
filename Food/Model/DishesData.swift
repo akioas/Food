@@ -5,12 +5,11 @@ class DishesData {
     private let dishesKey = "dishes"
     
     func saveCart(cart: [Int : Int]) {
-        print("saved")
         if let encoded = try? JSONEncoder().encode(cart) {
             UserDefaults.standard.set(encoded, forKey: cartKey)
         }
     }
-    func saveDishes(dishes: [Dish]) {
+    func saveDishes(dishes: [Int : Dish]) {
         if let encoded = try? JSONEncoder().encode(dishes) {
             UserDefaults.standard.set(encoded, forKey: dishesKey)
         }
@@ -22,9 +21,9 @@ class DishesData {
         }
         return nil
     }
-    func getDishes() -> [Dish]? {
+    func getDishes() -> [Int : Dish]? {
         if let data = UserDefaults.standard.object(forKey: dishesKey) as? Data,
-           let dishes = try? JSONDecoder().decode([Dish].self, from: data) {
+           let dishes = try? JSONDecoder().decode([Int : Dish].self, from: data) {
             return dishes
         }
         return nil

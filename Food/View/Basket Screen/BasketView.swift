@@ -2,42 +2,52 @@ import SwiftUI
 
 struct BasketView: View {
     @StateObject private var coordinator = CoordinatorService.basketCoordinator
+    
     var body: some View {
-        VStack {
-            TopView()
-                .frame(height: 42)
-            ScrollView {
-                HStack(alignment: .center, spacing: 8) {
-                    ZStack {
-                        Image("rice-with-vegetables 1")
-                            .position(x: 35, y: 36)
-                        Image(systemName: "circle")
-                            .position(x: 34, y: 34)
-                    }
-                    .background(Color(red: 0.97, green: 0.97, blue: 0.96))
-                    .cornerRadius(6)
-                    VStack(alignment: .leading, spacing: 4) {
-                        
-                        Text("Зеленый салат")
-                            .font(.custom("SF Pro Display", size: 14))
-                            .foregroundColor(Color(red: 0, green: 0, blue: 0))
-                        
-                    }
-                }
-            }
-            ZStack {
-                ZStack {
-                    Text("Оплатить 2 004 ₽")
-                        .font(.custom("SF Pro Display", size: 16))
-                        .foregroundColor(Color(red: 1, green: 1, blue: 1))
-                }
-                .background(Color(red: 1, green: 1, blue: 1))
-                .position(x: 171.5, y: 24)
-            }
-            .padding(.horizontal, 144)
-            .padding(.vertical, 14)
-            .background(Color(red: 0.20, green: 0.39, blue: 0.88))
-            .cornerRadius(10)
+        HStack {
+            Spacer()
+                .frame(width: 16)
+            VStack {
+                Spacer()
+                    .frame(height: 8)
+                TopView()
+                    .frame(height: 42)
+                Spacer()
+                    .frame(height: 22)
+                Cart()
         }
+        }
+    }
+}
+
+struct Cart: View {
+    @State var cartKeys = CartViewModel().getCart().map({$0.keys})
+    @State var cart = CartViewModel().getCart()
+    @State var dishes = CartViewModel().getDishes()
+    var keys: [Int]?
+    var values: [Int]?
+    
+    var body: some View {
+       
+        GeometryReader { reader in
+            
+            ScrollView(.vertical) {
+                if let cart = cart {
+                    if let cart = cart {
+                        ForEach(cart.keys.sorted(by: >), id: \.self) { key in
+                            if let dishes = dishes {
+                                HStack {
+                                    ZStack {
+                                        Color(red: 0.97, green: 0.97, blue: 0.96)
+                                        CachedImage(url: URL(string: dishes[key]?.imageUrl ?? ""))
+                                    }
+                                }
+                            }
+                        }
+                    }
+            }
+        }//ScrollView
+        .frame(width: reader.size.width - 32)
+    }
     }
 }

@@ -4,7 +4,7 @@ struct CategoriesView: View {
     @ObservedObject private var viewModel = CategoriesViewModel()
     @State var selected = CategoriesViewModel.defaultCategory
     @EnvironmentObject var settings: Settings
-
+    
     let columns = [GridItem(.flexible(), spacing: 8),
                    GridItem(.flexible(), spacing: 8),
                    GridItem(.flexible(), spacing: 0)]
@@ -40,23 +40,22 @@ struct CategoriesView: View {
                                                         CartViewModel().saveDishes(dishes: dishes)
                                                     }
                                                     settings.dish = dishes[index]
-                                                        settings.isShowing = true
+                                                    settings.isShowing = true
                                                     
-                                                }
-                                                )
+                                                })
                                                 {
                                                     VStack(alignment: .leading, spacing: 5) {
                                                         ZStack {
                                                             Color(red: 0.97, green: 0.97, blue: 0.96)
                                                                 .frame(width: (reader.size.width - 48) / 3, height: (reader.size.width - 48) / 3)
                                                                 .cornerRadius(10)
-
+                                                            
                                                             CachedImage(url: URL(string: dishes[index].imageUrl))
                                                                 .cornerRadius(10)
                                                                 .frame(width: (reader.size.width - 48) / 3 - 10, height: (reader.size.width - 48) / 3 - 10)
                                                         }
-
-
+                                                        
+                                                        
                                                         Text(dishes[index].name)
                                                             .font(Font.custom("SF Pro Display", size: 14))
                                                             .kerning(0.14)
@@ -69,18 +68,18 @@ struct CategoriesView: View {
                                                 }
                                             }
                                         }
-
+                                        
                                     }
-
-
+                                    
+                                    
                                 }//LazyVGrid
-
+                                
                             }//ScrollView
                             .frame(width: reader.size.width - 32)
                             Spacer()
                                 .frame(width: 16)
                         }
-
+                        
                         
                     }
                     
@@ -92,13 +91,13 @@ struct CategoriesView: View {
                     }
                 }
             }
-
-                if settings.isShowing {
-                    Color(.black).opacity(0.3).edgesIgnoringSafeArea(.all)
-                        ProductView()
-                            .frame(height: 460)
-                    
-                }
+            
+            if settings.isShowing {
+                Color(.black).opacity(0.3).edgesIgnoringSafeArea(.all)
+                ProductView()
+                    .frame(height: 460)
+                
+            }
         }
     }
 }

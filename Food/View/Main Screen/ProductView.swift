@@ -96,7 +96,6 @@ struct Product: View {
                       //  Spacer()
                         HStack {
                             Button(action: {
-                                print(viewModel.getCart())
                                 viewModel.addToCart(id: dish.id)
                             }) {
                                 ZStack {
