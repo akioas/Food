@@ -22,5 +22,8 @@ class CartViewModel {
     func addToCart(id: Int) {
         model.addToCart(id: id)
     }
+    func removeFromCart(id: Int) {
+        model.removeFromCart(id: id)
+    }
     
 }

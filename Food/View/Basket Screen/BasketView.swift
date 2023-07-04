@@ -39,8 +39,50 @@ struct Cart: View {
                                 HStack {
                                     ZStack {
                                         Color(red: 0.97, green: 0.97, blue: 0.96)
+                                            .cornerRadius(6)
+                                            .frame(width: 62, height: 62)
                                         CachedImage(url: URL(string: dishes[key]?.imageUrl ?? ""))
+                                            .frame(width: 54, height: 54)
                                     }
+                                    VStack {
+                                        Spacer()
+                                        HStack {
+                                            Text("Зеленый салат")
+                                                .font(Font.custom("SF Pro Display", size: 14))
+                                                .kerning(0.14)
+                                                .foregroundColor(.black)
+                                            Spacer()
+                                        }
+                                        HStack {
+                                            Text(String(dishes[key]?.price ?? 0) + " ₽")
+                                                .font(Font.custom("SF Pro Display", size: 14))
+                                                .kerning(0.14)
+                                                .foregroundColor(.black)
+                                            Text("·" + String(dishes[key]?.weight ?? 0) + " г")
+                                                .font(Font.custom("SF Pro Display", size: 14))
+                                                .kerning(0.14)
+                                                .foregroundColor(.black).opacity(0.5)
+                                            Spacer()
+                                        }
+                                        Spacer()
+                                    }
+                                    Spacer()
+                                    HStack(alignment: .center, spacing: 6) {
+                                        Image("minus")
+                                        .frame(width: 24, height: 24)
+                                        Spacer()
+                                        Text("1")
+                                            .kerning(0.14)
+                                            .foregroundColor(.black)
+                                        
+                                        
+                                        Spacer()
+                                        Image("plus")
+                                        .frame(width: 24, height: 24)
+                                    }
+                                    .frame(width: 99, height: 32)
+                                    .background(Color(red: 0.94, green: 0.93, blue: 0.93))
+                                    .cornerRadius(10)
                                 }
                             }
                         }
