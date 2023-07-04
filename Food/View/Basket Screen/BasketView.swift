@@ -126,25 +126,29 @@ struct Cart: View {
             VStack {
                 Spacer()
 
-                ZStack {
-                    Color(red: 0.2, green: 0.39, blue: 0.88)
-                        .cornerRadius(10)
-                    VStack {
-                        Spacer()
-                        HStack {
+                HStack {
+                    ZStack {
+                        Color(red: 0.2, green: 0.39, blue: 0.88)
+                            .cornerRadius(10)
+                        VStack {
                             Spacer()
-                            Text("Оплатить " + String(sum) + " ₽")
-                                .font(
-                                    Font.custom("SF Pro Display", size: 16)
-                                        .weight(.medium)
-                                )
-                                .kerning(0.1)
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(.white)
+                            HStack {
+                                Spacer()
+                                Text("Оплатить " + String(sum) + " ₽")
+                                    .font(
+                                        Font.custom("SF Pro Display", size: 16)
+                                            .weight(.medium)
+                                    )
+                                    .kerning(0.1)
+                                    .multilineTextAlignment(.center)
+                                    .foregroundColor(.white)
+                                Spacer()
+                            }
                             Spacer()
                         }
-                        Spacer()
                     }
+                    Spacer()
+                        .frame(width: 16)
                 }
                 .frame(height: 48)
 
