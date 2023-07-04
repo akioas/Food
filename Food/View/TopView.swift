@@ -1,6 +1,8 @@
 import SwiftUI
+import CoreLocation
 
 struct TopView: View {
+    @StateObject var locationManager = LocationManager()
     var body: some View {
         HStack(spacing: 4) {
             VStack {
@@ -10,16 +12,17 @@ struct TopView: View {
                 Spacer()
             }
             VStack(alignment: .leading, spacing: 4) {
-                Text("Санкт-Петербург")
-                  .font(
-                    Font.custom("SF Pro Display", size: 18)
-                      .weight(.medium)
-                  )
-                  .foregroundColor(.black)
-                Text("12 Августа, 2023")
-                .font(Font.custom("SF Pro Display", size: 14))
-                .kerning(0.14)
-                .foregroundColor(.black.opacity(0.5))
+                
+                Text(String(locationManager.city))
+                    .font(
+                        Font.custom("SF Pro Display", size: 18)
+                            .weight(.medium)
+                    )
+                    .foregroundColor(.black)
+                Text(Date(), style: .date)
+                    .font(Font.custom("SF Pro Display", size: 14))
+                    .kerning(0.14)
+                    .foregroundColor(.black.opacity(0.5))
                 Spacer()
             }
             Spacer()
@@ -34,6 +37,10 @@ struct TopView: View {
             }
             
         }
+        .onAppear(perform: {
+            locationManager.startUpdating()
+        }
+        )
     }
 }
 
