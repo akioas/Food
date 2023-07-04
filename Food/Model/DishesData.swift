@@ -3,11 +3,13 @@ import Foundation
 class DishesData {
     private let cartKey = "cart"
     private let dishesKey = "dishes"
+    private let calcKey = "calc"
     
     func saveCart(cart: [Int : Int]) {
         if let encoded = try? JSONEncoder().encode(cart) {
             UserDefaults.standard.set(encoded, forKey: cartKey)
         }
+        UserDefaults.standard.set(calc(), forKey: calcKey)
     }
     func saveDishes(dishes: [Int : Dish]) {
         if let encoded = try? JSONEncoder().encode(dishes) {
@@ -29,13 +31,14 @@ class DishesData {
         return nil
     }
     func addToCart(id: Int) {
-        print(id)
         if var cart = getCart() {
             if let item = cart[id] {
                 if item < 1 {
                     cart[id] = 1
                 } else {
-                    cart[id]! += 1
+                    if cart[id]! < 99 {
+                        cart[id]! += 1
+                    }
                 }
                 saveCart(cart: cart)
             } else {
@@ -64,5 +67,19 @@ class DishesData {
             UserDefaults.standard.removeObject(forKey: cartKey)
             
         }
+    }
+    func calc() -> Int {
+        var sum = 0
+        if let cart = getCart() {
+            if let dishes = getDishes() {
+                for (key, value) in cart {
+                    sum += value * (dishes[key]?.price ?? 0)
+                }
+            }
+        }
+        return sum
+    }
+    func getSum() -> Int {
+        UserDefaults.standard.integer(forKey: calcKey)
     }
 }
