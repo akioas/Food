@@ -29,6 +29,7 @@ class DishesData {
         return nil
     }
     func addToCart(id: Int) {
+        print(id)
         if var cart = getCart() {
             if let item = cart[id] {
                 if item < 1 {
@@ -38,14 +39,17 @@ class DishesData {
                 }
                 saveCart(cart: cart)
             } else {
-                saveCart(cart: [id : 1])
+                cart[id] = 1
+                saveCart(cart: cart)
             }
         } else {
             saveCart(cart: [id : 1])
         }
     }
     func removeFromCart(id: Int) {
+
         if var cart = getCart() {
+            print(cart)
             if let item = cart[id] {
                 if item <= 1 {
                     cart[id] = nil

@@ -23,6 +23,7 @@ class CartViewModel {
         model.addToCart(id: id)
     }
     func removeFromCart(id: Int) {
+        print(id)
         model.removeFromCart(id: id)
     }
     

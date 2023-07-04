@@ -2,7 +2,6 @@ import SwiftUI
 
 struct BasketView: View {
     @StateObject private var coordinator = CoordinatorService.basketCoordinator
-    
     var body: some View {
         HStack {
             Spacer()
@@ -15,24 +14,25 @@ struct BasketView: View {
                 Spacer()
                     .frame(height: 22)
                 Cart()
-        }
+            }
         }
     }
 }
 
 struct Cart: View {
-    @State var cartKeys = CartViewModel().getCart().map({$0.keys})
     @State var cart = CartViewModel().getCart()
     @State var dishes = CartViewModel().getDishes()
+    @State var viewCart = [Int : Int]()
+    let model = CartViewModel()
+
     var keys: [Int]?
     var values: [Int]?
     
     var body: some View {
-       
+        
         GeometryReader { reader in
             
             ScrollView(.vertical) {
-                if let cart = cart {
                     if let cart = cart {
                         ForEach(cart.keys.sorted(by: >), id: \.self) { key in
                             if let dishes = dishes {
@@ -47,7 +47,7 @@ struct Cart: View {
                                     VStack {
                                         Spacer()
                                         HStack {
-                                            Text("Зеленый салат")
+                                            Text(dishes[key]?.name ?? "")
                                                 .font(Font.custom("SF Pro Display", size: 14))
                                                 .kerning(0.14)
                                                 .foregroundColor(.black)
@@ -58,7 +58,7 @@ struct Cart: View {
                                                 .font(Font.custom("SF Pro Display", size: 14))
                                                 .kerning(0.14)
                                                 .foregroundColor(.black)
-                                            Text("·" + String(dishes[key]?.weight ?? 0) + " г")
+                                            Text("· " + String(dishes[key]?.weight ?? 0) + " г")
                                                 .font(Font.custom("SF Pro Display", size: 14))
                                                 .kerning(0.14)
                                                 .foregroundColor(.black).opacity(0.5)
@@ -68,17 +68,32 @@ struct Cart: View {
                                     }
                                     Spacer()
                                     HStack(alignment: .center, spacing: 6) {
-                                        Image("minus")
-                                        .frame(width: 24, height: 24)
+                                        Button(action: {model.removeFromCart(id: key)
+                                            viewCart[key]! -= 1
+                                        }
+                                       ) {
+                                            Image("minus")
+                                                .frame(width: 24, height: 24)
+                                        }
                                         Spacer()
-                                        Text("1")
-                                            .kerning(0.14)
-                                            .foregroundColor(.black)
-                                        
+                                        if let viewCart = viewCart {
+                                            if (viewCart[key] ?? 0 > 0) {
+                                                
+                                                Text(String(viewCart[key] ?? 0))
+                                                    .kerning(0.14)
+                                                    .foregroundColor(.black)
+                                                    .frame(width: 16)
+                                            }
+                                                
+                                        }
                                         
                                         Spacer()
-                                        Image("plus")
-                                        .frame(width: 24, height: 24)
+                                        Button(action: {model.addToCart(id: key)
+                                            viewCart[key]! += 1
+                                        }) {
+                                            Image("plus")
+                                                .frame(width: 24, height: 24)
+                                        }
                                     }
                                     .frame(width: 99, height: 32)
                                     .background(Color(red: 0.94, green: 0.93, blue: 0.93))
@@ -87,9 +102,11 @@ struct Cart: View {
                             }
                         }
                     }
-            }
-        }//ScrollView
-        .frame(width: reader.size.width - 32)
-    }
+            }//ScrollView
+            .frame(width: reader.size.width - 32)
+        }
+        .onAppear(perform: {
+            viewCart = CartViewModel().getCart() ?? [Int : Int]()
+        })
     }
 }

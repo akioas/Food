@@ -73,7 +73,7 @@ struct Product: View {
                                 .font(Font.custom("SF Pro Display", size: 14))
                                 .kerning(0.14)
                                 .foregroundColor(.black)
-                            Text("·" + String(dish.weight) + " г")
+                            Text("· " + String(dish.weight) + " г")
                                 .font(Font.custom("SF Pro Display", size: 14))
                                 .kerning(0.14)
                                 .foregroundColor(.black).opacity(0.5)
@@ -93,7 +93,6 @@ struct Product: View {
                             Spacer()
                                 .frame(width: 16)
                         }
-                      //  Spacer()
                         HStack {
                             Button(action: {
                                 viewModel.addToCart(id: dish.id)
